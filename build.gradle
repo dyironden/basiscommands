@@ -28,6 +28,10 @@ processResources {
     if (contents.contains("@VERSION@")) {
         file.write(contents.replace("@VERSION@", version), 'UTF-8')
     }
+
+    from 'src/main/resource/'
+    into "${buildDir}/resources/main/"
+    include '**/*.*'
 }
 
 task sourceJar(type: Jar) {
