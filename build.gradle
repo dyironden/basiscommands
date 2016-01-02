@@ -9,17 +9,15 @@ if (env.BUILD_NUMBER != null) {
     version += ("." + env.BUILD_NUMBER)
 }
 
+replaceIn "BasisCommands.java"
+replace "@VERSION@", version
+
 repositories {
     mavenCentral()
 }
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
-}
-
-resources {
-    replaceIn "BasisCommands.java"
-    replace "@VERSION@", version
 }
 
 task sourceJar(type: Jar) {
