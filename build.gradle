@@ -23,7 +23,7 @@ dependencies {
 }
 
 processResources {
-    def file = new File('src/main/java/' + group.replace('.', '/') + '/' + projName + '/BasisCommands.java');
+    def file = new File('src/main/java/org/to2mbn/basiscommands/BasisCommands.java');
     def contents = file.getText('UTF-8')
     if (contents.contains("@VERSION@")) {
         file.write(contents.replace("@VERSION@", version), 'UTF-8')
