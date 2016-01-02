@@ -3,7 +3,7 @@ apply plugin: 'java'
 
 group 'org.to2mbn'
 version '0.0.1'
-env = System.getenv()
+ext.env = System.getenv()
 
 if (env.BUILD_NUMBER != null) {
     version += ("." + env.BUILD_NUMBER)
