@@ -1,9 +1,10 @@
 apply plugin: 'java'
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
-def group = 'org.to2mbn'
-def projName = "basiscommands"
-def version = '0.0.1'
+group = 'org.to2mbn'
+archivesBaseName = "BasisCommands"
+projName = archivesBaseName.toLowerCase()
+version = '0.0.1'
 ext.env = System.getenv()
 
 if (env.BUILD_NUMBER != null) {
