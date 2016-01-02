@@ -35,7 +35,7 @@ public class AutoNoticeHandler extends PluginTask<BasisCommands> {
     private void loadNotices() throws IOException {
         IOUtils.readLines(noticeFile)
                 .stream()
-                .filter(line -> !line.startsWith("#") && !line.isEmpty())
+                .filter(line -> !line.isEmpty())
                 .forEach(this::addNotice);
     }
 

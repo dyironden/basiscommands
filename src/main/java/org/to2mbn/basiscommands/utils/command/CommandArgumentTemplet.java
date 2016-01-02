@@ -1,5 +1,7 @@
 package org.to2mbn.basiscommands.utils.command;
 
+import org.to2mbn.basiscommands.i18n.I18n;
+
 import java.util.function.Function;
 
 public class CommandArgumentTemplet<T> {
@@ -22,11 +24,11 @@ public class CommandArgumentTemplet<T> {
     }
 
     public CommandArgumentTemplet(Class<T> type, boolean isRequired, Function<T, Boolean> isValid) {
-        this(type, isRequired, null, isValid, "Invalid argument(s)");
+        this(type, isRequired, null, isValid, I18n.translate("command.invalid_arguments_msg"));
     }
 
     public CommandArgumentTemplet(Class<T> type, boolean isRequired) {
-        this(type, isRequired, null, arg -> true, "Invalid argument(s)");
+        this(type, isRequired, null, arg -> true, I18n.translate("command.invalid_arguments_msg"));
     }
 
     public Class<T> getType() {

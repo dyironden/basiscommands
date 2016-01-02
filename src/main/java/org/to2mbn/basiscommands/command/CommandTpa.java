@@ -4,6 +4,7 @@ import cn.nukkit.Player;
 import cn.nukkit.Server;
 import cn.nukkit.command.CommandSender;
 import org.to2mbn.basiscommands.BasisCommands;
+import org.to2mbn.basiscommands.i18n.I18n;
 import org.to2mbn.basiscommands.teleportrequest.TeleportRequest;
 import org.to2mbn.basiscommands.utils.command.CommandArgumentTemplet;
 import org.to2mbn.basiscommands.utils.command.CommandArguments;
@@ -33,11 +34,11 @@ public class CommandTpa implements Command {
         Player targetPlayer = Server.getInstance().getPlayerExact(args.nextString());
 
         if (targetPlayer == null) {
-            requestPlayer.sendMessage("This player is not online");
+            requestPlayer.sendMessage(I18n.translate("command.tpa.player_not_online_msg"));
         } else {
             BasisCommands.getTeleportRequestsHandler().addRequest(new TeleportRequest(requestPlayer, targetPlayer, PluginUtils.getServerTick()));
-            requestPlayer.sendMessage("Sent a tpa request to " + targetPlayer.getName());
-            targetPlayer.sendMessage(targetPlayer.getName() + " wants to teleport to you, type /tpaccept to accept");
+            requestPlayer.sendMessage(I18n.format("command.tpa.request_sent_msg", targetPlayer.getName()));
+            targetPlayer.sendMessage(I18n.format("command.tpa.request_received_msg", requestPlayer.getName()));
         }
     }
 }

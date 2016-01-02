@@ -2,6 +2,7 @@ package org.to2mbn.basiscommands.command;
 
 import cn.nukkit.command.CommandSender;
 import org.to2mbn.basiscommands.BasisCommands;
+import org.to2mbn.basiscommands.i18n.I18n;
 import org.to2mbn.basiscommands.utils.command.CommandArgumentTemplet;
 import org.to2mbn.basiscommands.utils.command.CommandArguments;
 
@@ -28,6 +29,6 @@ public class CommandAddNotice implements Command {
         String notice = args.nextString();
 
         BasisCommands.getAutoNoticeHandler().addNotice(notice);
-        sender.sendMessage("Notice added");
+        sender.sendMessage(I18n.translate("command.add_notice.added_msg"));
     }
 }

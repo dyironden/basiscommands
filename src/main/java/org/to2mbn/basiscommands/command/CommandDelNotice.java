@@ -2,6 +2,7 @@ package org.to2mbn.basiscommands.command;
 
 import cn.nukkit.command.CommandSender;
 import org.to2mbn.basiscommands.BasisCommands;
+import org.to2mbn.basiscommands.i18n.I18n;
 import org.to2mbn.basiscommands.utils.command.CommandArgumentTemplet;
 import org.to2mbn.basiscommands.utils.command.CommandArguments;
 
@@ -27,6 +28,6 @@ public class CommandDelNotice implements Command {
     public void execute(CommandSender sender, CommandArguments args) {
         int id = args.nextInteger();
         BasisCommands.getAutoNoticeHandler().removeNotice(id);
-        sender.sendMessage("Removed notice");
+        sender.sendMessage(I18n.translate("command.delnotice.deleted_msg"));
     }
 }

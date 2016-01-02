@@ -51,12 +51,4 @@ public class Configuration {
     public boolean has(String key) {
         return datas.containsKey(key);
     }
-
-    public <T> void set(String key, T val) {
-        datas.put(key, val);
-    }
-
-    public void save() throws IOException {
-        Utils.writeFile(configFile, yaml.dump(datas));
-    }
 }

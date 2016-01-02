@@ -1,0 +1,25 @@
+lang.loaded_msg=American English I18N file loaded
+
+command.invalid_arguments_msg=Invalid argument(s)
+command.not_allowed_to_use_msg=You are not allowed to use this command
+
+command.addnotice.added_msg=Notice added
+command.delnotice.deleted_msg=Notice deleted
+command.noticelist.notices=Notice List:
+command.noticelist.notices_header=ID  TEXT
+
+command.home.teleport_msg=Teleporting to home '%s'
+command.home.home_not_exists_msg=This home does not exists
+command.sethome.set_msg=Set home '%s' here
+command.sethome.too_many_homes_error=You can only set %s home(s)
+command.delhome.deleted_msg=Home deleted
+command.homelist.homes=Your home(s):
+
+command.tp.teleported_msg=Teleported to player '%s'
+command.tp.target_teleported_msg=Player '%s' teleported to you
+
+command.tpa.player_not_online_msg=This player is not online
+command.tpa.request_sent_msg=Sent a teleport request to player '%s'
+command.tpa.request_received_msg=Player '%s' wants to teleport to you, type '/tpaccept' to accpet
+command.tpaccept.accepted_msg=Accepted player '%s' to teleport to you
+command.tpaccept.target_accepted_msg=Player '%s' accepted your request

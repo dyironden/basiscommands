@@ -43,9 +43,12 @@ commands:
     usage: "/noticelist"
     permission: basiscommands.notice
 permissions:
+  basiscommands.home:
+    description: Allows players to use home commands
+    default: true
   basiscommands.tp:
-    description: Allows to execute '/tp' command
+    description: Allows players to use teleport commands
     default: op
   basiscommands.notice:
-    desciprtion: Allows to control notices
+    desciprtion: Allows players to control notices
     default: op

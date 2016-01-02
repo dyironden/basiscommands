@@ -6,6 +6,7 @@ import cn.nukkit.command.CommandSender;
 import cn.nukkit.utils.TextFormat;
 import org.to2mbn.basiscommands.BasisCommands;
 import org.to2mbn.basiscommands.homeposition.HomePosition;
+import org.to2mbn.basiscommands.i18n.I18n;
 import org.to2mbn.basiscommands.utils.command.CommandArgumentTemplet;
 import org.to2mbn.basiscommands.utils.command.CommandArguments;
 
@@ -29,7 +30,7 @@ public class CommandHomeList implements Command {
     public void execute(CommandSender sender, CommandArguments args) {
         Player player = (Player) sender;
 
-        player.sendMessage(TextFormat.WHITE + "Your Home(s):");
+        player.sendMessage(I18n.translate("command.homelist.homes"));
         BasisCommands.getHomePositionsHandler().getPlayerHomePositions(player)
                 .forEach(position -> player.sendMessage(toDisplayString(position)));
     }

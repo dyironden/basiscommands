@@ -9,10 +9,14 @@ import org.to2mbn.basiscommands.autonotice.AutoNoticeHandler;
 import org.to2mbn.basiscommands.command.*;
 import org.to2mbn.basiscommands.configuration.Configuration;
 import org.to2mbn.basiscommands.homeposition.HomePositionsHandler;
+import org.to2mbn.basiscommands.i18n.I18n;
 import org.to2mbn.basiscommands.teleportrequest.TeleportRequestsHandler;
 import org.to2mbn.basiscommands.utils.command.CommandHandler;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Locale;
 
 public class BasisCommands extends PluginBase {
     public static final String VERSION = "@VERSION@";
@@ -25,6 +29,38 @@ public class BasisCommands extends PluginBase {
     private static CommandHandler commandHandler;
     private static AutoNoticeHandler autoNoticeHandler;
     private static TeleportRequestsHandler teleportRequestsHandler;
+
+    public static Logger logger() {
+        return logger;
+    }
+
+    public static File getPluginDataDir() {
+        return pluginDataDir;
+    }
+
+    public static HomePositionsHandler getHomePositionsHandler() {
+        return homePositionsHandler;
+    }
+
+    public static PluginListener getPluginListener() {
+        return pluginListener;
+    }
+
+    public static Configuration getConfiguration() {
+        return configuration;
+    }
+
+    public static CommandHandler getCommandHandler() {
+        return commandHandler;
+    }
+
+    public static AutoNoticeHandler getAutoNoticeHandler() {
+        return autoNoticeHandler;
+    }
+
+    public static TeleportRequestsHandler getTeleportRequestsHandler() {
+        return teleportRequestsHandler;
+    }
 
     @Override
     public void onEnable() {
@@ -66,6 +102,16 @@ public class BasisCommands extends PluginBase {
         }
         configuration = new Configuration(new File(pluginDataDir, "config.yml"));
 
+        logger.info("Loading I18N");
+        Locale locale = Locale.forLanguageTag(configuration.getString("core.language"));
+        if (I18n.DEFAULT_LOCALE.equals(locale)) {
+            load18N(locale);
+        } else {
+            load18N(I18n.DEFAULT_LOCALE);
+            load18N(locale);
+        }
+        logger.info(I18n.translate("lang.loaded_msg"));
+
         logger.info("Loading auto notices");
         File noticeFile = new File(pluginDataDir, "notices.txt");
         if (!noticeFile.exists()) {
@@ -89,7 +135,7 @@ public class BasisCommands extends PluginBase {
         commandHandler.registerCommand(new CommandDelHome());
         commandHandler.registerCommand(new CommandTp());
         commandHandler.registerCommand(new CommandTpa());
-        commandHandler.registerCommand(new CommandTpAccept());
+        commandHandler.registerCommand(new CommandTpaccept());
         commandHandler.registerCommand(new CommandAddNotice());
         commandHandler.registerCommand(new CommandDelNotice());
         commandHandler.registerCommand(new CommandNoticeList());
@@ -98,37 +144,15 @@ public class BasisCommands extends PluginBase {
     private void shutdown() throws Throwable {
         homePositionsHandler.saveData();
         autoNoticeHandler.saveNotices();
-        configuration.save();
     }
 
-    public static Logger logger() {
-        return logger;
-    }
-
-    public static File getPluginDataDir() {
-        return pluginDataDir;
-    }
-
-    public static HomePositionsHandler getHomePositionsHandler() {
-        return homePositionsHandler;
-    }
-
-    public static PluginListener getPluginListener() {
-        return pluginListener;
-    }
-
-    public static Configuration getConfiguration() {
-        return configuration;
-    }
-
-    public static CommandHandler getCommandHandler() {
-        return commandHandler;
-    }
-
-    public static AutoNoticeHandler getAutoNoticeHandler() {
-        return autoNoticeHandler;
-    }
-    public static TeleportRequestsHandler getTeleportRequestsHandler() {
-        return teleportRequestsHandler;
+    private void load18N(Locale locale) throws IOException {
+        InputStream stream = getResource("lang/" + locale.toLanguageTag() + ".lang");
+        if (stream == null) {
+            logger.warning("I18n file for locale '" + locale.toLanguageTag() + "' does not exists");
+        } else {
+            logger.info("Loading I18N file for locale '" + locale.toLanguageTag() + "'");
+            I18n.loadSourcesFromStream(stream, locale);
+        }
     }
 }

@@ -5,6 +5,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import org.to2mbn.basiscommands.BasisCommands;
 import org.to2mbn.basiscommands.command.Command;
+import org.to2mbn.basiscommands.i18n.I18n;
 
 import java.util.Iterator;
 import java.util.List;
@@ -45,7 +46,7 @@ public class CommandHandler {
             if (command.canExecute(sender)) {
                 command.execute(sender, toCommandArguments(templets, args));
             } else {
-                sender.sendMessage("You are not allowed to execute this command");
+                sender.sendMessage(I18n.translate("command.not_allowed_to_use_msg"));
             }
             return true;
         }

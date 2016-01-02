@@ -4,6 +4,7 @@ import cn.nukkit.Player;
 import cn.nukkit.Server;
 import cn.nukkit.command.CommandSender;
 import org.to2mbn.basiscommands.BasisCommands;
+import org.to2mbn.basiscommands.i18n.I18n;
 import org.to2mbn.basiscommands.utils.command.CommandArgumentTemplet;
 import org.to2mbn.basiscommands.utils.command.CommandArguments;
 
@@ -38,9 +39,9 @@ public class CommandTp implements Command {
         player.teleportImmediate(target.getPosition());
 
         BasisCommands.logger().info("Teleported player " + player.getName() + " to " + target.getName());
-        player.sendMessage("Teleported to " + target.getName());
+        player.sendMessage(I18n.format("command.tp.teleported_msg", target.getName()));
         if (BasisCommands.getConfiguration().getBoolean("player.notice_when_tp")) {
-            target.sendMessage("Player " + player.getName() + " teleported to you");
+            target.sendMessage(I18n.format("command.tp.target_teleported_msg", player.getName()));
         }
     }
 }

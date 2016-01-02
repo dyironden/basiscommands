@@ -6,6 +6,7 @@ import cn.nukkit.level.Position;
 import org.to2mbn.basiscommands.BasisCommands;
 import org.to2mbn.basiscommands.homeposition.HomePosition;
 import org.to2mbn.basiscommands.homeposition.HomePositionsHandler;
+import org.to2mbn.basiscommands.i18n.I18n;
 import org.to2mbn.basiscommands.utils.command.CommandArgumentTemplet;
 import org.to2mbn.basiscommands.utils.command.CommandArguments;
 
@@ -36,12 +37,12 @@ public class CommandSetHome implements Command {
         int max = BasisCommands.getConfiguration().getInteger("sethome.max_home_count");
 
         if (handler.getHomeCount(player) > max) {
-            player.sendMessage("You can only set " + max + " home(s)");
+            player.sendMessage(I18n.translate("command.sethome.too_many_homes_error"));
             return;
         }
 
         handler.addHomePosition(player, new HomePosition(player.getName(), homeName, position.getX(), position.getY(), position.getZ(), position.getLevel().getId()));
-        player.sendMessage("Set home '" + homeName + "' here");
+        player.sendMessage(I18n.format("command.sethome.set_msg", homeName));
         BasisCommands.logger().info("Player " + player.getName() + " set a home at level " + position.getLevel().getName() + ":" + position.getX() + "," + position.getY() + "," + position.getZ());
     }
 }

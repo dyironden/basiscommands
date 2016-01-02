@@ -3,11 +3,12 @@ package org.to2mbn.basiscommands.command;
 import cn.nukkit.Player;
 import cn.nukkit.command.CommandSender;
 import org.to2mbn.basiscommands.BasisCommands;
+import org.to2mbn.basiscommands.i18n.I18n;
 import org.to2mbn.basiscommands.teleportrequest.TeleportRequest;
 import org.to2mbn.basiscommands.utils.command.CommandArgumentTemplet;
 import org.to2mbn.basiscommands.utils.command.CommandArguments;
 
-public class CommandTpAccept implements Command {
+public class CommandTpaccept implements Command {
     @Override
     public String getName() {
         return "tpaccept";
@@ -32,8 +33,8 @@ public class CommandTpAccept implements Command {
             Player requestPlayer = request.getRequestPlayer();
             requestPlayer.teleportImmediate(player.getPosition());
 
-            requestPlayer.sendMessage(player.getName() + " accepted your request");
-            player.sendMessage("Accepted " + requestPlayer.getName() + " to teleport to you");
+            requestPlayer.sendMessage(I18n.format("command.tpaccept.target_accepted_msg", player.getName()));
+            player.sendMessage(I18n.format("command.tpaccept.accepted_msg", requestPlayer.getName()));
         }
     }
 }
