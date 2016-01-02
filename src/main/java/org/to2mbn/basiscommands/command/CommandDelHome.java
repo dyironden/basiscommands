@@ -2,8 +2,8 @@ package org.to2mbn.basiscommands.command;
 
 import cn.nukkit.Player;
 import cn.nukkit.command.CommandSender;
-import com.sun.imageio.plugins.common.I18N;
 import org.to2mbn.basiscommands.BasisCommands;
+import org.to2mbn.basiscommands.i18n.I18n;
 import org.to2mbn.basiscommands.utils.command.CommandArgumentTemplet;
 import org.to2mbn.basiscommands.utils.command.CommandArguments;
 
@@ -31,6 +31,6 @@ public class CommandDelHome implements Command {
         String homeName = args.nextString();
 
         BasisCommands.getHomePositionsHandler().removeHomePosition(player, homeName);
-        player.sendMessage(I18N.getString("command.delhome.deleted_msg"));
+        player.sendMessage(I18n.translate("command.delhome.deleted_msg"));
     }
 }

@@ -1,6 +1,6 @@
 name: BasisCommands
 main: org.to2mbn.basiscommands.BasisCommands
-version: "0.0.0.1"
+version: "@VERSION@"
 api: ["1.0.0"]
 
 load: POSTWORLD

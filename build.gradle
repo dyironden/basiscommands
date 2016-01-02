@@ -4,11 +4,19 @@ apply plugin: 'java'
 group = 'org.to2mbn'
 archivesBaseName = "BasisCommands"
 def projName = archivesBaseName.toLowerCase()
-version = '0.0.1'
+version = '0.0.2'
 ext.env = System.getenv()
 
 if (env.BUILD_NUMBER != null) {
     version += ("." + env.BUILD_NUMBER)
+}
+
+def replaceInFile(String filename, String target, String placement) {
+    def file = new File(filename);
+    def contents = file.getText('UTF-8')
+    if (contents.contains(target)) {
+        file.write(contents.replace(target, placement), 'UTF-8')
+    }
 }
 
 repositories {
@@ -23,11 +31,8 @@ dependencies {
 }
 
 processResources {
-    def file = new File('src/main/java/org/to2mbn/basiscommands/BasisCommands.java');
-    def contents = file.getText('UTF-8')
-    if (contents.contains("@VERSION@")) {
-        file.write(contents.replace("@VERSION@", version), 'UTF-8')
-    }
+    replaceInFile('src/main/java/org/to2mbn/basiscommands/BasisCommands.java', '@VERSION@', version)
+    replaceInFile('src/main/resource/plugin.yml', '@VERSION@', version)
 
     from 'src/main/resource/'
     into "${buildDir}/resources/main/"

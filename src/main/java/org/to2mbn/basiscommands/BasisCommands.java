@@ -135,7 +135,7 @@ public class BasisCommands extends PluginBase {
         commandHandler.registerCommand(new CommandDelHome());
         commandHandler.registerCommand(new CommandTp());
         commandHandler.registerCommand(new CommandTpa());
-        commandHandler.registerCommand(new CommandTpaccept());
+        commandHandler.registerCommand(new CommandTpAccept());
         commandHandler.registerCommand(new CommandAddNotice());
         commandHandler.registerCommand(new CommandDelNotice());
         commandHandler.registerCommand(new CommandNoticeList());

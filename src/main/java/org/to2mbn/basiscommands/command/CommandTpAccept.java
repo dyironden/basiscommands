@@ -8,7 +8,7 @@ import org.to2mbn.basiscommands.teleportrequest.TeleportRequest;
 import org.to2mbn.basiscommands.utils.command.CommandArgumentTemplet;
 import org.to2mbn.basiscommands.utils.command.CommandArguments;
 
-public class CommandTpaccept implements Command {
+public class CommandTpAccept implements Command {
     @Override
     public String getName() {
         return "tpaccept";
