@@ -1,0 +1,34 @@
+apply plugin: 'java'
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+group 'org.to2mbn'
+version '0.0.1'
+env = System.getenv()
+
+if (env.BUILD_NUMBER != null) {
+    version += ("." + env.BUILD_NUMBER)
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+resources {
+    replaceIn "BasisCommands.java"
+    replace "@VERSION@", version
+}
+
+task sourceJar(type: Jar) {
+    from sourceSets.main.allSource
+    classifier = "src"
+}
+
+build.dependsOn sourceJar
+
+artifacts {
+    archives sourceJar
+}

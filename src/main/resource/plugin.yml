@@ -1,0 +1,51 @@
+name: BasisCommands
+main: org.to2mbn.basiscommands.BasisCommands
+version: "0.0.0.1"
+api: ["1.0.0"]
+
+load: POSTWORLD
+author: to2mbn
+description: A Nukkit plugin which adds some useful commands in game like '/sethome'
+website: https://github.com/to2mbn/basiscommands
+commands:
+  sethome:
+    description: Set your home position
+    usage: "/sethome <home name>"
+  home:
+    description: Teleport to your home
+    usage: "/home <home name>"
+  delhome:
+    description: Delete your home
+    usage: "/delhome <home name>"
+  homelist:
+    description: List your home(s)
+    usage: "/homelist"
+  tpa:
+    description: Ask a player to teleport to him
+    usage: "/tpa <player name>"
+  tpaccept:
+    description: Accept a teleporting request
+    usage: "/tpaccept"
+  tp:
+    description: Teleport to a player
+    usage: "/tp <player name>"
+    permission: basiscommands.tp
+  addnotice:
+    description: Add a notice to show
+    usage: "/addnotice <notice>"
+    permission: basiscommands.notice
+  delnotice:
+    description: Delete a notice
+    usage: "/delnotice <notice id>"
+    permission: basiscommands.notice
+  noticelist:
+    description: List all the notices
+    usage: "/noticelist"
+    permission: basiscommands.notice
+permissions:
+  basiscommands.tp:
+    description: Allows to execute '/tp' command
+    default: op
+  basiscommands.notice:
+    desciprtion: Allows to control notices
+    default: op

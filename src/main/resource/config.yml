@@ -1,0 +1,6 @@
+# Core
+auto_notices.delay: 300 # seconds
+
+# Commands
+sethome.max_home_count: 3
+tpa.request_max_wait_time: 30 # seconds
