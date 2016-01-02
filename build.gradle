@@ -1,8 +1,11 @@
+import jdk.nashorn.internal.parser.JSONParser
+
 apply plugin: 'java'
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
-group 'org.to2mbn'
-version '0.0.1'
+def group = 'org.to2mbn'
+def projName = "basiscommands"
+def version = '0.0.1'
 ext.env = System.getenv()
 
 if (env.BUILD_NUMBER != null) {
@@ -18,8 +21,9 @@ dependencies {
 }
 
 processResources {
-    replaceIn "BasisCommands.java"
-    replace "@VERSION@", version
+    def file = new File('src/main/java/' + group.replace('.', '/') + '/' + projName + '/BasisCommands.java');
+    def contents = file.getText('UTF-8')
+    file.write(contents.replace("@VERSION@", version), 'UTF-8')
 }
 
 task sourceJar(type: Jar) {
