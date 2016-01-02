@@ -12,9 +12,13 @@ if (env.BUILD_NUMBER != null) {
 
 repositories {
     mavenCentral()
+    flatDir {
+        dirs 'libs'
+    }
 }
 
 dependencies {
+    compile name: 'nukkit'
 }
 
 processResources {
