@@ -15,7 +15,7 @@ import org.to2mbn.basiscommands.utils.command.CommandHandler;
 import java.io.File;
 
 public class BasisCommands extends PluginBase {
-    public static final String VERSION = "@VERSION@";
+    public static final String VERSION = "0.0.1";
 
     private static Logger logger;
     private static File pluginDataDir;

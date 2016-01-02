@@ -3,7 +3,6 @@ package org.to2mbn.basiscommands.homeposition;
 import cn.nukkit.Player;
 import com.google.common.collect.Lists;
 import com.google.gson.Gson;
-import com.sun.istack.internal.NotNull;
 import org.to2mbn.basiscommands.BasisCommands;
 
 import java.io.*;
@@ -33,12 +32,12 @@ public class HomePositionsHandler {
         }
     }
 
-    public List<HomePosition> getPlayerHomePositions(@NotNull Player player) {
+    public List<HomePosition> getPlayerHomePositions(Player player) {
         List<HomePosition> positions = datas.get(player.getName());
         return positions != null ? positions : Lists.newArrayList();
     }
 
-    public HomePosition getHomePositionByName(@NotNull Player player, @NotNull String name) {
+    public HomePosition getHomePositionByName(Player player, String name) {
         Iterator<HomePosition> iterator = getPlayerHomePositions(player).iterator();
         while (iterator.hasNext()) {
             HomePosition position = iterator.next();
@@ -54,7 +53,7 @@ public class HomePositionsHandler {
         return getPlayerHomePositions(player).size();
     }
 
-    public void addHomePosition(@NotNull Player player, @NotNull HomePosition position) {
+    public void addHomePosition(Player player, HomePosition position) {
         String playerName = player.getName();
         if (!datas.containsKey(playerName)) {
             datas.put(playerName, Lists.newArrayList());
@@ -63,14 +62,14 @@ public class HomePositionsHandler {
         datas.get(playerName).add(position);
     }
 
-    public void removeHomePosition(@NotNull Player player, @NotNull String homeName) {
+    public void removeHomePosition(Player player, String homeName) {
         HomePosition position = getHomePositionByName(player, homeName);
         if (position != null) {
             removeHomePosition(player, position);
         }
     }
 
-    public void removeHomePosition(@NotNull Player player, @NotNull HomePosition position) {
+    public void removeHomePosition(Player player, HomePosition position) {
         getPlayerHomePositions(player).remove(position);
     }
 
