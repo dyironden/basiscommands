@@ -61,10 +61,10 @@ commands:
     usage: "/delwarp <name>"
     permission: basiscommands.warp
   warplist:
-    description: List all the global warp points
+    description: List all the available global warp points
     usage: "/warplist"
   back:
-    description: Teleport back to the last teleport point (including death point)
+    description: Teleport back to the last teleport point (including death position)
     usage: "/back"
   suicide:
     description: Kill your self
@@ -75,7 +75,7 @@ commands:
   setspawn:
     desciprtion: Set the global spawn point
     usage: "/setspawn"
-    permission:
+    permission: basiscommands.setspawn
 permissions:
   basiscommands.tpa:
     description: Allows players to use tpa commands
