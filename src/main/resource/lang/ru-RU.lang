@@ -1,0 +1,36 @@
+lang.loaded_msg=Русский языковой пакет был успешно загружен
+
+command.invalid_arguments_msg=Неверный агрумент(ы)
+command.not_allowed_to_use_msg=У вас нет прав для использования данной команды
+
+command.addnotice.added_msg=Уведомление добавлено
+command.delnotice.deleted_msg=Уведомление удалено
+command.noticelist.notices=Список уведомлений:
+command.noticelist.notices_header=ID  TEXT
+
+command.home.teleport_msg=Телепортируем в дом '%s'
+command.home.home_not_exists_msg=Этого дома не существует
+command.sethome.set_msg=Дом '%s' установлен здесь
+command.sethome.too_many_homes_error=Вы можете создать только %s домов
+command.delhome.deleted_msg=Дом удален
+command.homelist.homes=Ваш дом(а):
+
+command.tp.teleported_msg=Вы были телепортированы к игроку '%s'
+command.tp.target_teleported_msg=Игрок '%s' телепортирован к вам
+
+command.tpa.player_not_online_msg=Этого игрока нет на сервере
+command.tpa.request_sent_msg=Отправлен запрос на телепортацию к игроку '%s'
+command.tpa.tpa_request_received_msg=Игрок '%s' хочет телепортироваться к вам, напишите '/tpaccept' чтобы подтвердить
+command.tpa.tpahere_request_received_msg=Игрок '%s' хочет телепортивать вас к себе, напишите '/tpaccept' чтобы подтвердить
+
+command.tpaccept.accepted_msg=Запрос на телепортацию от игрока '%s' принят
+command.tpaccept.target_accepted_msg=Игрок '%s' принял ваш запрос на телепортацию
+command.tpaccept.tpahere_target_accepted_msg=Вы телепортированы к игроку '%s'
+
+command.setwarp.set_msg=Варп успешно установлена
+command.warplist.warp_points=Список варпов:
+command.warplist.warp_points_header=ID  NAME
+command.delwarp.warp_deleted=Варп успешно удален
+command.warp.warp_point_not_exists_msg=Этот варп еще не существует
+
+command.setspawn.spawn_set_msg=Новая точка спавна успешно установлена
