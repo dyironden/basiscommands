@@ -20,7 +20,17 @@ command.tp.target_teleported_msg=玩家'%s'传送到了你身边
 
 command.tpa.player_not_online_msg=这个玩家不在线
 command.tpa.request_sent_msg=已将传送请求发送给'%s'
-command.tpa.request_received_msg='%s'想要传送到你身边, 输入 '/tpaccept' 来同意
+command.tpa.tpa_request_received_msg='%s'想要传送到你身边, 输入 '/tpaccept' 来同意
+command.tpa.tpahere_request_received_msg='%s'想要你传送到他身边, 输入 '/tpaccept' 来同意
 
 command.tpaccept.accepted_msg=已同意 '%s' 传送到你身边
 command.tpaccept.target_accepted_msg='%s' 接受了你的传送请求
+command.tpaccept.tpahere_target_accepted_msg=传送到了 '%s' 身边
+
+command.setwarp.set_msg=传送点已设置
+command.warplist.warp_points=所有的传送点:
+command.warplist.warp_points_header=ID  名称
+command.delwarp.warp_deleted=该传送点已删除
+command.warp.warp_point_not_exists_msg=该传送点不存在
+
+command.setspawn.spawn_set_msg=新出生地已设置

@@ -1,18 +1,18 @@
 package org.to2mbn.basiscommands.command;
 
 import cn.nukkit.Player;
-import cn.nukkit.Server;
 import cn.nukkit.command.CommandSender;
 import org.to2mbn.basiscommands.BasisCommands;
 import org.to2mbn.basiscommands.i18n.I18n;
+import org.to2mbn.basiscommands.teleportposition.position.WarpPointPosition;
 import org.to2mbn.basiscommands.util.PluginUtils;
 import org.to2mbn.basiscommands.util.command.CommandArgumentTemplet;
 import org.to2mbn.basiscommands.util.command.CommandArguments;
 
-public class CommandTp implements Command {
+public class CommandWarp implements Command {
     @Override
     public String getName() {
-        return "tp";
+        return "warp";
     }
 
     @Override
@@ -30,19 +30,13 @@ public class CommandTp implements Command {
     @Override
     public void execute(CommandSender sender, CommandArguments args) {
         Player player = (Player) sender;
-        Player target = Server.getInstance().getPlayer(args.nextString());
+        String warpPointName = args.nextString();
 
-        if (target == null) {
-            player.sendMessage("This player is not online");
-            return;
-        }
-
-        player.teleportImmediate(target.getPosition());
-
-        BasisCommands.logger().info("Teleported player " + player.getName() + " to " + target.getName());
-        PluginUtils.sendMessage(player, I18n.format("command.tp.teleported_msg", target.getName()));
-        if (BasisCommands.getConfiguration().getBoolean("player.notice_when_tp")) {
-            PluginUtils.sendMessage(target, I18n.format("command.tp.target_teleported_msg", player.getName()));
+        WarpPointPosition position = BasisCommands.getTeleportPositionsHandler().getWarpPointPosition(warpPointName);
+        if (position == null) {
+            PluginUtils.sendMessage(player, I18n.translate("command.warp.warp_point_not_exists_msg"));
+        } else {
+            player.teleportImmediate(position.toPosition());
         }
     }
 }

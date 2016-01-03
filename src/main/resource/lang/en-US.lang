@@ -20,6 +20,17 @@ command.tp.target_teleported_msg=Player '%s' teleported to you
 
 command.tpa.player_not_online_msg=This player is not online
 command.tpa.request_sent_msg=Sent a teleport request to player '%s'
-command.tpa.request_received_msg=Player '%s' wants to teleport to you, type '/tpaccept' to accpet
+command.tpa.tpa_request_received_msg=Player '%s' wants to teleport to you, type '/tpaccept' to accpet
+command.tpa.tpahere_request_received_msg=Player '%s' wants you to teleport to him, type '/tpaccept' to accpet
+
 command.tpaccept.accepted_msg=Accepted player '%s' to teleport to you
 command.tpaccept.target_accepted_msg=Player '%s' accepted your request
+command.tpaccept.tpahere_target_accepted_msg=Teleported to Player '%s'
+
+command.setwarp.set_msg=Warp point set
+command.warplist.warp_points=Warp Points List:
+command.warplist.warp_points_header=ID  NAME
+command.delwarp.warp_deleted=Warp point deleted
+command.warp.warp_point_not_exists_msg=This warp point does not exists
+
+command.setspawn.spawn_set_msg=New spawn point set

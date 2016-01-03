@@ -21,14 +21,21 @@ commands:
     description: List your home(s)
     usage: "/homelist"
   tpa:
-    description: Ask a player to teleport to him
+    description: Ask a player to accept you to teleport to him
     usage: "/tpa <player name>"
+  tpahere:
+    description: Ask a player to teleport to you
+    usage: "/tpahere <player name>"
   tpaccept:
     description: Accept a teleporting request
     usage: "/tpaccept"
   tp:
     description: Teleport to a player
     usage: "/tp <player name>"
+    permission: basiscommands.tp
+  tpall:
+    description: Teleport all the players to you
+    usage: "/tpall"
     permission: basiscommands.tp
   addnotice:
     description: Add a notice to show
@@ -39,10 +46,40 @@ commands:
     usage: "/delnotice <notice id>"
     permission: basiscommands.notice
   noticelist:
-    description: List all the notices
+    description: List all the notices with ids
     usage: "/noticelist"
     permission: basiscommands.notice
+  setwarp:
+    description: Set a global warp point
+    usage: "/setwarp <name>"
+    permission: basiscommands.warp
+  warp:
+    description: Teleport to a global warp point
+    usage: "/warp <name>"
+  delwarp:
+    description: Delete a global warp point
+    usage: "/delwarp <name>"
+    permission: basiscommands.warp
+  warplist:
+    description: List all the global warp points
+    usage: "/warplist"
+  back:
+    description: Teleport back to the last teleport point (including death point)
+    usage: "/back"
+  suicide:
+    description: Kill your self
+    usage: "/suicide"
+  spawn:
+    description: Teleport to the global spawn point
+    usage: "/spawn"
+  setspawn:
+    desciprtion: Set the global spawn point
+    usage: "/setspawn"
+    permission:
 permissions:
+  basiscommands.tpa:
+    description: Allows players to use tpa commands
+    default: true
   basiscommands.home:
     description: Allows players to use home commands
     default: true
@@ -51,4 +88,10 @@ permissions:
     default: op
   basiscommands.notice:
     desciprtion: Allows players to control notices
+    default: op
+  basiscommands.warp:
+    description: Allows players to set and remove the global warp points
+    default: op
+  basiscommands.setspawn:
+    description: Allows players to set the global spawn point
     default: op

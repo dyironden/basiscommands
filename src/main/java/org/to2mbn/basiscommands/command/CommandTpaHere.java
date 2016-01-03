@@ -7,14 +7,14 @@ import org.to2mbn.basiscommands.BasisCommands;
 import org.to2mbn.basiscommands.i18n.I18n;
 import org.to2mbn.basiscommands.teleportrequest.RequestMode;
 import org.to2mbn.basiscommands.teleportrequest.TeleportRequest;
+import org.to2mbn.basiscommands.util.PluginUtils;
 import org.to2mbn.basiscommands.util.command.CommandArgumentTemplet;
 import org.to2mbn.basiscommands.util.command.CommandArguments;
-import org.to2mbn.basiscommands.util.PluginUtils;
 
-public class CommandTpa implements Command {
+public class CommandTpaHere implements Command {
     @Override
     public String getName() {
-        return "tpa";
+        return "tpahere";
     }
 
     @Override
@@ -37,9 +37,9 @@ public class CommandTpa implements Command {
         if (targetPlayer == null) {
             PluginUtils.sendMessage(requestPlayer, I18n.translate("command.tpa.player_not_online_msg"));
         } else {
-            BasisCommands.getTeleportRequestsHandler().addRequest(new TeleportRequest(requestPlayer, targetPlayer, PluginUtils.getServerTick(), RequestMode.TPA));
+            BasisCommands.getTeleportRequestsHandler().addRequest(new TeleportRequest(requestPlayer, targetPlayer, PluginUtils.getServerTick(), RequestMode.TPAHERE));
             PluginUtils.sendMessage(requestPlayer, I18n.format("command.tpa.request_sent_msg", targetPlayer.getName()));
-            PluginUtils.sendMessage(targetPlayer, I18n.format("command.tpa.tpa_request_received_msg", requestPlayer.getName()));
+            PluginUtils.sendMessage(targetPlayer, I18n.format("command.tpa.tpahere_request_received_msg", requestPlayer.getName()));
         }
     }
 }

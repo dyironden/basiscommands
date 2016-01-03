@@ -1,4 +1,4 @@
-package org.to2mbn.basiscommands.utils.command;
+package org.to2mbn.basiscommands.util.command;
 
 import org.to2mbn.basiscommands.i18n.I18n;
 

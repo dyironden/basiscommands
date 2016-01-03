@@ -1,8 +1,8 @@
 package org.to2mbn.basiscommands.command;
 
 import cn.nukkit.command.CommandSender;
-import org.to2mbn.basiscommands.utils.command.CommandArgumentTemplet;
-import org.to2mbn.basiscommands.utils.command.CommandArguments;
+import org.to2mbn.basiscommands.util.command.CommandArgumentTemplet;
+import org.to2mbn.basiscommands.util.command.CommandArguments;
 
 public interface Command {
     String getName();

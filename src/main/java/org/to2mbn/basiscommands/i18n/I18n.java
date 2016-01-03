@@ -1,7 +1,6 @@
 package org.to2mbn.basiscommands.i18n;
 
-import org.to2mbn.basiscommands.BasisCommands;
-import org.to2mbn.basiscommands.utils.IOUtils;
+import org.to2mbn.basiscommands.util.IOUtils;
 
 import java.io.IOException;
 import java.io.InputStream;

@@ -8,10 +8,10 @@ import cn.nukkit.utils.Utils;
 import org.to2mbn.basiscommands.autonotice.AutoNoticeHandler;
 import org.to2mbn.basiscommands.command.*;
 import org.to2mbn.basiscommands.configuration.Configuration;
-import org.to2mbn.basiscommands.homeposition.HomePositionsHandler;
 import org.to2mbn.basiscommands.i18n.I18n;
+import org.to2mbn.basiscommands.teleportposition.TeleportPositionsHandler;
 import org.to2mbn.basiscommands.teleportrequest.TeleportRequestsHandler;
-import org.to2mbn.basiscommands.utils.command.CommandHandler;
+import org.to2mbn.basiscommands.util.command.CommandHandler;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,12 +22,19 @@ public class BasisCommands extends PluginBase {
     public static final String VERSION = "@VERSION@";
 
     private static Logger logger;
+
     private static File pluginDataDir;
+
     private static Configuration configuration;
+
     private static PluginListener pluginListener;
-    private static HomePositionsHandler homePositionsHandler;
+
+    private static TeleportPositionsHandler teleportPositionsHandler;
+
     private static CommandHandler commandHandler;
+
     private static AutoNoticeHandler autoNoticeHandler;
+
     private static TeleportRequestsHandler teleportRequestsHandler;
 
     public static Logger logger() {
@@ -38,8 +45,8 @@ public class BasisCommands extends PluginBase {
         return pluginDataDir;
     }
 
-    public static HomePositionsHandler getHomePositionsHandler() {
-        return homePositionsHandler;
+    public static TeleportPositionsHandler getTeleportPositionsHandler() {
+        return teleportPositionsHandler;
     }
 
     public static PluginListener getPluginListener() {
@@ -113,21 +120,21 @@ public class BasisCommands extends PluginBase {
         logger.info(I18n.translate("lang.loaded_msg"));
 
         logger.info("Loading auto notices");
-        File noticeFile = new File(pluginDataDir, "notices.txt");
+        File noticeFile = new File(pluginDataDir, "notices.json");
         if (!noticeFile.exists()) {
-            Utils.writeFile(noticeFile, getResource("notices.txt"));
+            Utils.writeFile(noticeFile, getResource("notices.json"));
         }
         autoNoticeHandler = new AutoNoticeHandler(this, noticeFile, configuration.getInteger("auto_notices.delay"));
         getServer().getScheduler().scheduleRepeatingTask(autoNoticeHandler, 20 * 1); //per second
 
         logger.info("Loading players' home positions");
-        homePositionsHandler = new HomePositionsHandler(new File(pluginDataDir, "home_positions.obj"));
+        teleportPositionsHandler = new TeleportPositionsHandler(new File(pluginDataDir, "teleport_positions.json"));
 
         logger.info("Loading teleport requests' handler");
         teleportRequestsHandler = new TeleportRequestsHandler(this, configuration.getInteger("tpa.request_max_wait_time"));
         getServer().getScheduler().scheduleRepeatingTask(teleportRequestsHandler, 1); // per 1/20 second
 
-        logger.info("Loading commands' handler");
+        logger.info("Loading commands");
         commandHandler = new CommandHandler();
         commandHandler.registerCommand(new CommandHome());
         commandHandler.registerCommand(new CommandHomeList());
@@ -135,14 +142,24 @@ public class BasisCommands extends PluginBase {
         commandHandler.registerCommand(new CommandDelHome());
         commandHandler.registerCommand(new CommandTp());
         commandHandler.registerCommand(new CommandTpa());
+        commandHandler.registerCommand(new CommandTpaHere());
         commandHandler.registerCommand(new CommandTpAccept());
+        commandHandler.registerCommand(new CommandTpAll());
         commandHandler.registerCommand(new CommandAddNotice());
         commandHandler.registerCommand(new CommandDelNotice());
         commandHandler.registerCommand(new CommandNoticeList());
+        commandHandler.registerCommand(new CommandWarp());
+        commandHandler.registerCommand(new CommandSetWarp());
+        commandHandler.registerCommand(new CommandDelWarp());
+        commandHandler.registerCommand(new CommandWarpList());
+        commandHandler.registerCommand(new CommandBack());
+        commandHandler.registerCommand(new CommandSuicide());
+        commandHandler.registerCommand(new CommandSpawn());
+        commandHandler.registerCommand(new CommandSetSpawn());
     }
 
     private void shutdown() throws Throwable {
-        homePositionsHandler.saveData();
+        teleportPositionsHandler.saveData();
         autoNoticeHandler.saveNotices();
     }
 

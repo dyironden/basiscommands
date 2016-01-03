@@ -5,8 +5,9 @@ import cn.nukkit.command.CommandSender;
 import org.to2mbn.basiscommands.BasisCommands;
 import org.to2mbn.basiscommands.i18n.I18n;
 import org.to2mbn.basiscommands.teleportrequest.TeleportRequest;
-import org.to2mbn.basiscommands.utils.command.CommandArgumentTemplet;
-import org.to2mbn.basiscommands.utils.command.CommandArguments;
+import org.to2mbn.basiscommands.util.PluginUtils;
+import org.to2mbn.basiscommands.util.command.CommandArgumentTemplet;
+import org.to2mbn.basiscommands.util.command.CommandArguments;
 
 public class CommandTpAccept implements Command {
     @Override
@@ -30,11 +31,24 @@ public class CommandTpAccept implements Command {
         TeleportRequest request = BasisCommands.getTeleportRequestsHandler().pickRequest(player);
 
         if (request != null) {
-            Player requestPlayer = request.getRequestPlayer();
-            requestPlayer.teleportImmediate(player.getPosition());
+            Player from = null, to = null;
 
-            requestPlayer.sendMessage(I18n.format("command.tpaccept.target_accepted_msg", player.getName()));
-            player.sendMessage(I18n.format("command.tpaccept.accepted_msg", requestPlayer.getName()));
+            switch (request.getMode()) {
+                case TPA:
+                    from = request.getRequestPlayer();
+                    to = player;
+                    PluginUtils.sendMessage(from, I18n.format("command.tpaccept.target_accepted_msg", to.getName()));
+                    PluginUtils.sendMessage(to, I18n.format("command.tpaccept.accepted_msg", from.getName()));
+                    break;
+                case TPAHERE:
+                    from = player;
+                    to = request.getRequestPlayer();
+                    PluginUtils.sendMessage(from, I18n.format("command.tpaccept.target_accepted_msg", to.getName()));
+                    PluginUtils.sendMessage(to, I18n.format("command.tpaccept.tpahere_accepted_msg", from.getName()));
+                    break;
+            }
+
+            from.teleportImmediate(to.getPosition());
         }
     }
 }

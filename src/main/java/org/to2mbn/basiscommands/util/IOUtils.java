@@ -1,4 +1,4 @@
-package org.to2mbn.basiscommands.utils;
+package org.to2mbn.basiscommands.util;
 
 import com.google.common.collect.Lists;
 

@@ -7,11 +7,13 @@ import java.util.Objects;
 public class TeleportRequest {
     private final Player requestPlayer, targetPlayer;
     private final int time;
+    private final RequestMode mode;
 
-    public TeleportRequest(Player requestPlayer, Player targetPlayer, int time) {
+    public TeleportRequest(Player requestPlayer, Player targetPlayer, int time, RequestMode mode) {
         this.requestPlayer = requestPlayer;
         this.targetPlayer = targetPlayer;
         this.time = time;
+        this.mode = mode;
     }
 
     public Player getRequestPlayer() {
@@ -24,6 +26,10 @@ public class TeleportRequest {
 
     public int getTime() {
         return time;
+    }
+
+    public RequestMode getMode() {
+        return mode;
     }
 
     @Override

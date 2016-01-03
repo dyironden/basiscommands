@@ -7,12 +7,10 @@ import org.to2mbn.basiscommands.util.PluginUtils;
 import org.to2mbn.basiscommands.util.command.CommandArgumentTemplet;
 import org.to2mbn.basiscommands.util.command.CommandArguments;
 
-import java.util.Iterator;
-
-public class CommandNoticeList implements Command {
+public class CommandDelWarp implements Command {
     @Override
     public String getName() {
-        return "noticelist";
+        return "delwarp";
     }
 
     @Override
@@ -22,18 +20,16 @@ public class CommandNoticeList implements Command {
 
     @Override
     public CommandArgumentTemplet<?>[] getArgumentTemplets() {
-        return new CommandArgumentTemplet<?>[0];
+        return new CommandArgumentTemplet<?>[]{
+                new CommandArgumentTemplet<>(int.class, true)
+        };
     }
 
     @Override
     public void execute(CommandSender sender, CommandArguments args) {
-        PluginUtils.sendMessage(sender, I18n.translate("command.noticelist.notices"));
-        PluginUtils.sendMessage(sender, I18n.translate("command.noticelist.notices_header"));
-        Iterator<String> iterator = BasisCommands.getAutoNoticeHandler().getNoticeList().iterator();
+        int id = args.nextInteger();
 
-        int id = 0;
-        while (iterator.hasNext()) {
-            PluginUtils.sendMessage(sender, (id++) + "  " + iterator.next());
-        }
+        BasisCommands.getTeleportPositionsHandler().removeWarpPointPosition(id);
+        PluginUtils.sendMessage(sender, I18n.translate("command.delwarp.warp_deleted"));
     }
 }

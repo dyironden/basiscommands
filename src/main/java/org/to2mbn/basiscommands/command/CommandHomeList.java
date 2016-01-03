@@ -5,10 +5,11 @@ import cn.nukkit.Server;
 import cn.nukkit.command.CommandSender;
 import cn.nukkit.utils.TextFormat;
 import org.to2mbn.basiscommands.BasisCommands;
-import org.to2mbn.basiscommands.homeposition.HomePosition;
+import org.to2mbn.basiscommands.teleportposition.position.HomePointPosition;
 import org.to2mbn.basiscommands.i18n.I18n;
-import org.to2mbn.basiscommands.utils.command.CommandArgumentTemplet;
-import org.to2mbn.basiscommands.utils.command.CommandArguments;
+import org.to2mbn.basiscommands.util.PluginUtils;
+import org.to2mbn.basiscommands.util.command.CommandArgumentTemplet;
+import org.to2mbn.basiscommands.util.command.CommandArguments;
 
 public class CommandHomeList implements Command {
     @Override
@@ -30,12 +31,12 @@ public class CommandHomeList implements Command {
     public void execute(CommandSender sender, CommandArguments args) {
         Player player = (Player) sender;
 
-        player.sendMessage(I18n.translate("command.homelist.homes"));
-        BasisCommands.getHomePositionsHandler().getPlayerHomePositions(player)
-                .forEach(position -> player.sendMessage(toDisplayString(position)));
+        PluginUtils.sendMessage(player, I18n.translate("command.homelist.homes"));
+        BasisCommands.getTeleportPositionsHandler().getPlayerHomePositions(player)
+                .forEach(position -> PluginUtils.sendMessage(player, toDisplayString(position)));
     }
 
-    private String toDisplayString(HomePosition position) {
+    private String toDisplayString(HomePointPosition position) {
         return TextFormat.GOLD + position.getName() + TextFormat.WHITE + " - " +
                 String.format("%s(%s,%s,%s)", Server.getInstance().getLevel(position.getLevel()).getName(), (int) position.getX(), (int) position.getY(), (int) position.getZ());
     }
