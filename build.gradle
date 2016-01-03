@@ -4,7 +4,7 @@ apply plugin: 'java'
 group = 'org.to2mbn'
 archivesBaseName = "BasisCommands"
 def projName = archivesBaseName.toLowerCase()
-version = '0.0.2'
+version = '0.0.3'
 ext.env = System.getenv()
 
 if (env.BUILD_NUMBER != null) {
